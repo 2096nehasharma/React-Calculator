@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+output{
+  text-align: right;
+  font-size: 30px;
+}
+button {
+  font-weight: 700;
+  float: left;
+  font-size: 25px;
+  background-color: lightgrey;
+  color: grey;
+  border: 1px solid transparent;
+}
+button:hover {
+  background-color: #4C4C4D;
+  color: white;
+  border: 1px solid #7A7B7C;
+}
+
+.calculator .keypad{
+  width: 100px;
+    height: 100px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    min-width: 300px;
+    min-height: 315px;
+    padding: 0.5em;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.evalBtn{
+  background-color: #ffaa00;
+  color: white;
+}
