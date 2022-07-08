@@ -121,7 +121,7 @@ const Calculator = (props) => {
     return (
         <>
             <div className="calculator">
-                <h1>Calculator</h1>
+                <h1 className='header'>Calculator</h1>
                 <div className="display" id="display">{props.display}</div>
                 <div className='keypad'>
                     {keypad.map((v, key) => {
