@@ -129,10 +129,7 @@ const Calculator = () => {
                             if(v.id==="equals"){
                            return  (<button id={v.id} key={key} value={v.value} onClick={()=>handleResult()}>{v.value}</button>)
                             }
-                           return  (
-                           <div >
-                            <button id={v.id} key={key} value={v.value} onClick={()=>handleClick(v.value)}>{v.value}</button> 
-                            </div>)
+                           return  (<button id={v.id} key={key} value={v.value} onClick={()=>handleClick(v.value)}>{v.value}</button> )
                         })                       
                         }
 
