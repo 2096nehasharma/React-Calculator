@@ -1,4 +1,5 @@
 export default {
+    "root": true,
     "env": {
         "browser": true,
         "es2021": true
@@ -18,5 +19,7 @@ export default {
         "react"
     ],
     "rules": {
+        "import/prefer-default-export": "off",
+        "react/react-in-jsx-scope": "off"
     }
 }
