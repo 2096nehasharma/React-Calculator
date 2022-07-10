@@ -1,4 +1,4 @@
-output{
+.output{
   text-align: right;
   font-size: 30px;
 }
@@ -16,13 +16,13 @@ button:hover {
   border: 1px solid #7A7B7C;
 }
 #display{
-  width: 36vw;
+  width: 300px;
   text-align: right;
   padding: 0 10px 0 0;
   margin: auto;
   color: darkslategrey;
-    font-weight: 400;
-    font-size: 25px;
+  font-weight: 400;
+  font-size: 25px;
 }
 .calculator .keypad{
     width: 100px;
@@ -49,8 +49,8 @@ button:hover {
   
 }
  #clear{
-  height: 8vw;
-  width: 37vw;
+  height: 65px;
+  width: 300px;
   font-size: 22px;
   grid-column: 1 / span 4;
   margin: 0px;
