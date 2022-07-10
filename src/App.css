@@ -1,4 +1,4 @@
-.output{
+.output {
   text-align: right;
   font-size: 30px;
 }
@@ -11,11 +11,11 @@ button {
   border: 1px solid transparent;
 }
 button:hover {
-  background-color: #4C4C4D;
+  background-color: #4c4c4d;
   color: white;
-  border: 1px solid #7A7B7C;
+  border: 1px solid #7a7b7c;
 }
-#display{
+#display {
   width: 300px;
   text-align: right;
   padding: 0 10px 0 0;
@@ -24,31 +24,30 @@ button:hover {
   font-weight: 400;
   font-size: 25px;
 }
-.calculator .keypad{
-    width: 100px;
-    height: 100px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    min-width: 300px;
-    min-height: 315px;
-    padding: 0.5em;
-    display: grid;
-    grid-gap: 1px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+.calculator .keypad {
+  width: 100px;
+  height: 100px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  min-width: 300px;
+  min-height: 315px;
+  padding: 0.5em;
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
-.calculator .header{
+.calculator .header {
   text-align: center;
 }
-.operatorBtn{
+.operatorBtn {
   background-color: #ffaa00;
   color: white;
-  
 }
- #clear{
+#clear {
   height: 65px;
   width: 300px;
   font-size: 22px;

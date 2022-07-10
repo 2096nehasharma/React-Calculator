@@ -18,30 +18,31 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case UPDATE: {
-        // console.log(action,state,"OUTPUT")
+            // console.log(action,state,"OUTPUT")
 
             const updateDisplay = action.payload;
             // preventing update if decimal is already present in display value and return state
             if ((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8) {
-                return {...state}
-            } else if(state.prevOp === "equal"||state.prevOp === "clear"){
-                console.log("checking displayed values",updateDisplay,state, updateDisplay.input)
+                return { ...state }
+            } else if (state.prevOp === "equal" || state.prevOp === "clear") {
+                console.log("checking displayed values", updateDisplay, state, updateDisplay.input)
                 return {
-                ...state,
-                // overridibg input and updating history
-                display: updateDisplay.input,
-                accumulated: updateDisplay.input,
-                history:updateDisplay.input,
-                prevOp: updateDisplay.operation,
-            }}
+                    ...state,
+                    // overridibg input and updating history
+                    display: updateDisplay.input,
+                    accumulated: updateDisplay.input,
+                    history: updateDisplay.input,
+                    prevOp: updateDisplay.operation,
+                }
+            }
             else {
-                (console.log(state,"state"))
+                (console.log(state, "state"))
                 return {
                     ...state,
                     // overriding with 0 or value
-                    display: state.display === '0' || state.prevOp === "operator"  ? 
-                    updateDisplay.input
-                    : state.display + updateDisplay.input,
+                    display: state.display === '0' || state.prevOp === "operator" ?
+                        updateDisplay.input
+                        : state.display + updateDisplay.input,
                     prevOp: updateDisplay.operation,
                 }
             }
@@ -49,50 +50,50 @@ export default function (state = initialState, action) {
 
         //removing last entry if double operator is used. 
         case ADD: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4): state.history;
+            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
 
             return {
                 ...state,
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " + "
                     : state.accumulated !== "0" ? state.accumulated + " + "
-                    : history() + state.display + " + ",
+                        : history() + state.display + " + ",
                 prevOp: "operator"
             }
         }
 
         case SUBTRACT: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4): state.history;
+            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
             return {
                 ...state,
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " - "
-                        : state.accumulated !== "0" ? state.accumulated + " - "
+                    : state.accumulated !== "0" ? state.accumulated + " - "
                         : history() + state.display + " - ",
                 prevOp: "operator"
             }
         }
 
         case MULTIPLY: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4): state.history;
+            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
 
             return {
                 ...state,
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " * "
                     : state.accumulated !== "0" ? state.accumulated + " * "
-                    : history() + state.display + " * ",
+                        : history() + state.display + " * ",
                 prevOp: "operator"
             }
         }
 
         case DIVIDE: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4): state.history;
+            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
             return {
                 ...state,
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " / "
-                        : state.accumulated !== "0" ? state.accumulated + " / "
+                    : state.accumulated !== "0" ? state.accumulated + " / "
                         : history() + state.display + " / ",
                 prevOp: "operator"
             }
@@ -111,7 +112,7 @@ export default function (state = initialState, action) {
             let states = state.history + state.display; //concatenating values to history
             //using math js library for operations
             let maths = math.evaluate(states);
-            console.log(states,state.history,state.display,state, "STATE")
+            console.log(states, state.history, state.display, state, "STATE")
             if (state.prevOp === "equal") {
                 return {
                     ...state
