@@ -12,37 +12,30 @@ const initialState = {
     display: '0',
     prevOp: "",
     accumulated: "0",
-    history: '0'
+    history: '0',
+    icon:""
 }
 
 export default function (state = initialState, action) {
+    const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
+
     switch (action.type) {
         case UPDATE: {
-            // console.log(action,state,"OUTPUT")
-
+            console.log(action,state,history(),"OUTPUT")
             const updateDisplay = action.payload;
             // preventing update if decimal is already present in display value and return state
             if ((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8) {
                 return { ...state }
-            } else if (state.prevOp === "equal" || state.prevOp === "clear") {
-                console.log("checking displayed values", updateDisplay, state, updateDisplay.input)
-                return {
-                    ...state,
-                    // overridibg input and updating history
-                    display: updateDisplay.input,
-                    accumulated: updateDisplay.input,
-                    history: updateDisplay.input,
-                    prevOp: updateDisplay.operation,
-                }
-            }
+            } 
             else {
-                (console.log(state, "state"))
+                (console.log("ELSE BLOCK",state))
                 return {
                     ...state,
                     // overriding with 0 or value
-                    display: state.display === '0' || state.prevOp === "operator" ?
+                    display: state.display === '0' || state.prevOp === "operator"||state.prevOp === "equal" || state.prevOp === "clear" ?
                         updateDisplay.input
                         : state.display + updateDisplay.input,
+                        accumulated: state.prevOp === "equal" || state.prevOp === "clear"?updateDisplay.input:state.display + updateDisplay.input,
                     prevOp: updateDisplay.operation,
                 }
             }
@@ -50,10 +43,10 @@ export default function (state = initialState, action) {
 
         //removing last entry if double operator is used. 
         case ADD: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
 
             return {
                 ...state,
+                icon:" + ",
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " + "
                     : state.accumulated !== "0" ? state.accumulated + " + "
@@ -63,9 +56,9 @@ export default function (state = initialState, action) {
         }
 
         case SUBTRACT: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
             return {
                 ...state,
+                icon:" - ",
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " - "
                     : state.accumulated !== "0" ? state.accumulated + " - "
@@ -75,8 +68,6 @@ export default function (state = initialState, action) {
         }
 
         case MULTIPLY: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
-
             return {
                 ...state,
                 display: state.display,
@@ -88,9 +79,9 @@ export default function (state = initialState, action) {
         }
 
         case DIVIDE: {
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
             return {
                 ...state,
+                icon:" / ",
                 display: state.display,
                 history: state.history === '0' && state.accumulated === "0" ? state.display + " / "
                     : state.accumulated !== "0" ? state.accumulated + " / "
@@ -112,7 +103,7 @@ export default function (state = initialState, action) {
             let states = state.history + state.display; //concatenating values to history
             //using math js library for operations
             let maths = math.evaluate(states);
-            console.log(states, state.history, state.display, state, "STATE")
+            console.log("HISTORY:",history(),"state",state,"STATESSSSS",states)
             if (state.prevOp === "equal") {
                 return {
                     ...state
